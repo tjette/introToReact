@@ -46,7 +46,6 @@ const WebApp = () => {
       title={"First Title"}
       paragraph={"First Paragraph"}
       />
-
     </div>
   )
 }
