@@ -9,12 +9,12 @@
   border: 3px solid black;
 }
 
-.navItemContainer{
+.navBar{
   display: flex;
   justify-content: space-around;
 }
 
-.navItemContainer > li {
+.navBar > li {
   font-size: 24px;
   list-style: none;
 }

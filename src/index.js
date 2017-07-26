@@ -26,12 +26,3 @@ ReactDOM.render((
     </div>
   </Router>
 ), document.getElementById('root'));
-
-// import './styles.css';
-// import App from './WebApp/App';
-// import MappingAndFiltering from './WebApp/MappingAndFiltering';
-// import ChatApp from './Chatter/ChatApp';
-
-// ReactDOM.render(<App/>, document.getElementById('root'));
-// ReactDOM.render(<MappingAndFiltering allTheData={DATA}/>, document.getElementById('map'));
-// ReactDOM.render(<ChatApp/>, document.getElementById('chat'));
