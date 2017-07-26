@@ -1,7 +1,8 @@
 import React from 'react';
+import CHATDATA from './CHATDATA'
 
 const Chatter = (props) => {
-const chats = props.data.chats.map(function(chat){
+const chats = CHATDATA.chats.map(function(chat){
   return (
     <div>
     <h3>{chat.username}</h3>
@@ -10,7 +11,7 @@ const chats = props.data.chats.map(function(chat){
   )
 })
   return (
-    <div>
+    <div className="chatContainer">
       {chats}
     </div>
   )
