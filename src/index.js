@@ -6,6 +6,7 @@ import NavigationBar from './components/NavigationBar';
 import App from './WebApp/App';
 import ChatApp from './Chatter/ChatApp';
 import AcmeApp from './Acme/AcmeApp'
+import PlaygroundApp from './Playground/Playground';
 
 const Home = () => {
   return (
@@ -23,6 +24,8 @@ ReactDOM.render((
       <Route path="/WebApp" component={ App } />
       <Route path="/ChatApp" component={ ChatApp } />
       <Route path="/AcmeApp" component={ AcmeApp } />
+      <Route path="/PlaygroundApp" component={ PlaygroundApp } />
+
     </div>
   </Router>
 ), document.getElementById('root'));
