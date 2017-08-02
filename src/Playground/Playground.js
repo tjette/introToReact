@@ -1,36 +1,14 @@
 import React from 'react';
 import faker from 'faker';
+import Counter from './Counter';
+import UsersList from './UsersList';
 
-const UsersList = (props) => {
-  return (
-    <div>
-      <h1> Found Users List </h1>
-      <ul>
-        {
-          props.usersData.map(function(user, index){
-            return <li key={index}> {user.name}</li>;
-          })
-        }
-      </ul>
-    </div>
-  )
-}
-
-const Counter = (props) => {
-
-  return (
-    <div>
-      <h1> Counter</h1>
-      <h3> counter: {props.counter}</h3>
-      <button onClick={() => props.increaseCounter() }> Increase Counter</button>
-      <button onClick={() => props.decreaseCounter() }> Decrease Counter</button>
-    </div>
-  )
-}
 class Playground extends React.Component {
 
   state = {
-    name: "Travis",
+    firstName: null,
+    lastName: null,
+    img: null,
     counter: 0,
     users: null,
     showCounter: undefined
@@ -44,6 +22,24 @@ class Playground extends React.Component {
       showCounter: !this.state.showCounter
     })
   }
+  updateFirstName = (event) => this.setState({firstName: event.target.value})
+  updateLastName = (event) => this.setState({lastName: event.target.value})
+  updateImg = (event) => this.setState({img: event.target.value})
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      img: this.state.img
+    }
+    console.log(person);
+    let users = this.state.users;
+    users.push(person);
+    console.log(users, "users")
+    this.setState({users})
+  }
+
   increaseCounter(){
     this.setState({
       counter: this.state.counter += 1})
@@ -54,32 +50,45 @@ class Playground extends React.Component {
       counter: this.state.counter -= 1
     })
   }
+
   componentDidMount(){
     this.fetchUsersFromServer();
-    const randomName = faker.name.firstName();
-    alert(randomName);
-    const someProd = faker.commerce.product();
-    alert(someProd)
   }
 
-  fetchUsersFromServer(){
-    const users = [
-      {name: "Travis", id:1},
-      {name: "Hannah", id:2},
-      {name: "Mike", id:3},
-      {name: "Joseph", id:4}
-    ]
-    this.setState({users: users})
+  fetchUsersFromServer = () => {
+      //Temporary array to hold people
+      // for loop to create person and push into temp array
+      //set state of users to temporary array
 
-  setTimeout(() => {
-    this.setState({users:users})
-  }, 5000)
+      const temporaryArray = [];
 
+      for(var i=0; i<20; i++){
+        temporaryArray.push({
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
+          img: faker.random.image()
+        })
+      }
+      this.setState({users: temporaryArray})
   }
+
 
   render(){
     return (
       <div>
+        <form onSubmit={this.handleFormSubmit}>
+          <input
+            onChange={this.updateFirstName}
+          />
+          <input
+            onChange={this.updateLastName}
+          />
+          <input
+            onChange={this.updateImg}
+          />
+          <button type="submit">Submit</button>
+        </form>
+
         <button className={this.state.showCounter ? "openButton" : "closeButton"}
         onClick={()=> this.toggleCounter()}> {this.state.showCounter ? "Counter open" : "Counter closed"} </button>
         {
